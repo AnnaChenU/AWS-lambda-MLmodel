@@ -5,6 +5,7 @@
     inputs:
       - name: training_sample_input
         default: datum://0172fe4a-987e-bbce-1651-b19a23d28f79
+    environment: aws-eu-west-1-g2-2xlarge
 
 
 - step:
@@ -18,6 +19,7 @@
     inputs:
         - name: model
           default: datum://0172fe69-525e-ba45-fb26-af80212c92b0
+    environment: aws-eu-west-1-g2-2xlarge
        
 - pipeline:
     name: Training pipeline
