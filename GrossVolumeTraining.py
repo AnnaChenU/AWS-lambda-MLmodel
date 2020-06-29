@@ -139,7 +139,7 @@ class GrossVolumeTraining(object):
 
         try:
             print("Dowloaing pojo.")
-            final_gbm.download_pojo(os.path.join(OUTPUT_PATH, 'gbm_model.java'))
+            final_gbm.download_pojo(os.path.join(OUTPUT_PATH, 'gbm_model'))
             if path.exists(os.path.join(OUTPUT_PATH, 'gbm_model.java')):
                 print("Pojo downloaded successfully")
             else:
