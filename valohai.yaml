@@ -1,0 +1,28 @@
+---
+
+- step:
+    name: Execute ml
+    image: chenuuu5/cargo-ml-runtime:firsttry
+    command: python3 GrossVolumeTraining.py
+    inputs:
+      - name: training_sample_input
+        default: datum://0172fe16-a4eb-51ec-c85d-5adc09ad2314
+    #parameters:
+    # - name: example
+    #   description: Example parameter
+    #   type: integer
+    #   default: 300
+ 
+ - step:
+    name: package maven project
+    image: maven:3.6.0-jdk-11-slim
+    command:
+      sed -i '1s/^/package GrossVolumeModel;/' /valohai/inputs/model/gbm_model/GrossVolumeModel_gbm.java &&
+      cp /valohai/inputs/model/gbm_model/GrossVolumeModel_gbm.java /valohai/repository/src/main/java/GrossVolumeModel/GrossVolumeModel_gbm.java &&
+      mvn clean package -f /valohai/repository/pom.xml > /valohai/outputs/mvn_log.txt &&
+      cp /valohai/repository/target/mlModel-1.0.0.jar /valohai/outputs//mlModel-1.0.0.jar
+    inputs:
+      - name: model
+        default: datum://0172fe69-525e-ba45-fb26-af80212c92b0
+    
+    
