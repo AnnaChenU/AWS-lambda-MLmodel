@@ -1,6 +1,6 @@
 - step:
     name: Execute ml
-    image: chenuuu5/cargo-ml-runtime:secondtry
+    image: chenuuu5/cargo-ml-runtime:latest
     command: python3 GrossVolumeTraining.py
     inputs:
       - name: training_sample_input
@@ -9,7 +9,7 @@
 
 - step:
     name: package maven project
-    image: chenuuu5/cargo-ml-runtime:secondtry
+    image: maven
     command:
       - sed -i '1s/^/package GrossVolumeModel;/' ${VH_INPUTS_DIR}/model/gbm_model/GrossVolumeModel_gbm.java 
       - cp ${VH_INPUTS_DIR}/model/gbm_model/GrossVolumeModel_gbm.java ${VH_REPOSITORY_DIR}/src/main/java/GrossVolumeModel/GrossVolumeModel_gbm.java 
