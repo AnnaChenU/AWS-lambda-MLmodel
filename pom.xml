@@ -6,11 +6,15 @@
     <groupId>org.example</groupId>
     <artifactId>mlModel</artifactId>
     <packaging>jar</packaging>
-    <name>MLmodel</name>
+    <name>mlModel</name>
     <version>1.0.0</version>
 
     <properties>
         <java.version>1.8</java.version>
+
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+
         <sl4j.version>1.6.1</sl4j.version>
         <environment>local</environment>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -20,12 +24,15 @@
         <maven.build.timestamp.format>yyyy-MM-dd'T'HH:mm:ss.SSS'Z'</maven.build.timestamp.format>
     </properties>
 
-    
+
     <build>
         <plugins>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.2</version>
+                <configuration>
+                    <argLine>-Xmx1024m</argLine>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -80,7 +87,7 @@
             </extension>
         </extensions>
     </build>
-    
+
     <dependencies>
         <!-- https://mvnrepository.com/artifact/com.amazonaws/aws-lambda-java-core -->
         <dependency>
@@ -107,12 +114,11 @@
 			<artifactId>gson</artifactId>
 			<version>2.8.6</version>
 		</dependency>
+        <!-- https://mvnrepository.com/artifact/ai.h2o/h2o-genmodel -->
         <dependency>
-            <groupId>rms.cargo.GrossVolumeModel</groupId>
+            <groupId>ai.h2o</groupId>
             <artifactId>h2o-genmodel</artifactId>
-            <version>1.0</version>
-            <scope>compile</scope>
-            <!--systemPath>${project.basedir}/src/main/java/GrossVolumeModel/h2o-genmodel.jar</systemPath-->
+            <version>3.24.0.2</version>
         </dependency>
     </dependencies>
 </project>
