@@ -29,4 +29,4 @@
         type: execution
         step: package maven project
     edges:
-      - [execute-ml.output.*, train.input.model]
+      - [execute-ml.output.*, package-jar.input.model]
