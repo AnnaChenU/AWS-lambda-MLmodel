@@ -24,7 +24,7 @@ import hex.genmodel.easy.prediction.RegressionModelPrediction;
 
 public class VolumeHandler implements RequestHandler<RequestList, RequestList> {
     Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE).create();
-    private static final String modelClassName = "gbm_model";
+    private static final String modelClassName = "GrossVolumeModel_gbm";
     //private static final String targetName = "FinalVolume_predicted";
 
     @Override
@@ -40,7 +40,7 @@ public class VolumeHandler implements RequestHandler<RequestList, RequestList> {
     }
 
     private EasyPredictModelWrapper generateModel() {
-        GenModel rawModel = new gbm_model();
+        GenModel rawModel = new GrossVolumeModel_gbm();
         EasyPredictModelWrapper model = new EasyPredictModelWrapper(new EasyPredictModelWrapper.Config()
                 .setModel(rawModel).setConvertUnknownCategoricalLevelsToNa(true));
         return model;
