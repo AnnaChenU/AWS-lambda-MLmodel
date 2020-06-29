@@ -12,10 +12,10 @@
     name: package maven project
     image: maven
     command:
-      - sed -i '1s/^/package GrossVolumeModel;/' ${VH_INPUTS_DIR}/model/GrossVolumeModel_gbm.java 
       - cp ${VH_INPUTS_DIR}/model/GrossVolumeModel_gbm.java ${VH_REPOSITORY_DIR}/src/main/java/GrossVolumeModel/GrossVolumeModel_gbm.java 
-      - mvn clean package -f ${VH_INPUTS_DIR}/pom.xml > ${VH_OUTPUTS_DIR}/mvn_log.txt
-      - cp ${VH_INPUTS_DIR}/target/mlModel-1.0.0.jar ${VH_OUTPUTS_DIR}/mlModel-1.0.0.jar
+      - sed -i '1s/^/package GrossVolumeModel;/' ${VH_REPOSITORY_DIR}/src/main/java/GrossVolumeModel/GrossVolumeModel_gbm.java
+      - mvn clean package -f ${VH_REPOSITORY_DIR}/pom.xml > ${VH_OUTPUTS_DIR}/mvn_log.txt
+      - cp ${VH_REPOSITORY_DIR}/target/mlModel-1.0.0.jar ${VH_OUTPUTS_DIR}/mlModel-1.0.0.jar
     inputs:
         - name: model
           default: datum://0172fe69-525e-ba45-fb26-af80212c92b0
