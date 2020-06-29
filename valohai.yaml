@@ -3,23 +3,15 @@
 - step:
     name: Execute ml
     image: chenuuu5/cargo-ml-runtime:secondtry
-    command: python3 GrossVolumeTraining.py
-    inputs:
-      - name: training_sample_input
-        default: datum://0172fe16-a4eb-51ec-c85d-5adc09ad2314
-    environment: azure-westeurope-nc6
-
-- step:
-    name: package maven project
-    image: chenuuu5/cargo-ml-runtime:secondtry
-    command:
-      - sed -i '1s/^/package GrossVolumeModel;/' ${VH_INPUTS_DIR}/model/gbm_model/GrossVolumeModel_gbm.java 
-      - cp ${VH_INPUTS_DIR}/model/gbm_model/GrossVolumeModel_gbm.java ${VH_REPOSITORY_DIR}/src/main/java/GrossVolumeModel/GrossVolumeModel_gbm.java 
+    command: 
+      - python3 GrossVolumeTraining.py
+      - sed -i '1s/^/package GrossVolumeModel;/' ${VH_OUTPUTS_DIR}/model/gbm_model/GrossVolumeModel_gbm.java 
+      - cp ${VH_OUTPUTS_DIR}/model/gbm_model/GrossVolumeModel_gbm.java ${VH_REPOSITORY_DIR}/src/main/java/GrossVolumeModel/GrossVolumeModel_gbm.java 
       - mvn clean package -f ${VH_REPOSITORY_DIR}/pom.xml > ${VH_OUTPUTS_DIR}/mvn_log.txt 
       - cp ${VH_REPOSITORY_DIR}/target/mlModel-1.0.0.jar ${VH_OUTPUTS_DIR}/mlModel-1.0.0.jar
     inputs:
-      - name: model
-        default: datum://0172fe69-525e-ba45-fb26-af80212c92b0
+      - name: training_sample_input
+        default: datum://0172fe16-a4eb-51ec-c85d-5adc09ad2314
     environment: azure-westeurope-nc6
     
     
