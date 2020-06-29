@@ -8,11 +8,7 @@
       - name: training_sample_input
         default: datum://0172fe16-a4eb-51ec-c85d-5adc09ad2314
     environment: azure-westeurope-nc6
-    #parameters:
-    # - name: example
-    #   description: Example parameter
-    #   type: integer
-    #   default: 300
+    
  - step:
     name: package maven project
     image: maven:3.6.0-jdk-11-slim
